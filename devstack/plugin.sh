@@ -22,10 +22,15 @@ if [[ "$1" == "stack" && "$2" == "install" ]]; then
     echo_summary "Running stack install"
 elif [[ "$1" == "stack" && "$2" == "post-config" ]]; then
     echo_summary "Running stack post-config"
-    wget http://get.docker.com -O install_docker.sh
-    sudo chmod 777 install_docker.sh
-    sudo sh install_docker.sh
-    sudo rm install_docker.sh
+   
+wget http://get.docker.com -O install_docker.sh
+sudo chmod 777 install_docker.sh
+sudo sh install_docker.sh
+sudo rm install_docker.sh
+git clone https://github.com/openstack/nova-docker.git -b stable/mitaka /opt/stack
+sudo python /opt/stack/nova-docker/setup.py install
+sudo pip install docker-py
+
 
     if is_fedora; then
       install_package socat dnsmasq
