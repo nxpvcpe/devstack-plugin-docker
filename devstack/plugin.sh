@@ -27,10 +27,10 @@ wget http://get.docker.com -O install_docker.sh
 sudo chmod 777 install_docker.sh
 sudo sh install_docker.sh
 sudo rm install_docker.sh
+sudo pip install docker-py
 git clone https://github.com/openstack/nova-docker.git -b stable/mitaka /opt/stack
 sudo python /opt/stack/nova-docker/setup.py install
-sudo pip install docker-py
-
+sudo cp /opt/stack/nova-docker/etc/nova/rootwrap.d/docker.filters /etc/nova/rootwrap.d
 
     if is_fedora; then
       install_package socat dnsmasq
